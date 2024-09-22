@@ -1,0 +1,128 @@
+<div style="height: 100%; width: 100%">
+  <div class="w-100 d-flex flex-row justify-content-between p-2">
+    <span style="font-size: 1.5rem; color: #091e42; font-weight: 600"
+      >Planning Projects</span
+    >
+    <img
+      (click)="openPopUp(PopUpComponent)"
+      src="../../../assets/icons/New Button.svg"
+      alt=""
+    />
+  </div>
+  <div
+    style="
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 8px;
+      background-color: rgb(255, 255, 255);
+      height: 80%;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      overflow: auto;
+      padding: 2%;
+    "
+    class="d-flex flex-wrap justify-content-start"
+    *ngFor="let item of projects; let i = index"
+  >
+    <div
+      style="width: 30%; height: 50%; margin: 1%"
+      (click)="routerDetails(i)"
+      class="card"
+    >
+      <div style="width: 100%; height: 40%; background-color: #f3f3f3">
+        <div class="d-flex flex-column p-4">
+          <span
+            style="
+              font-size: 1rem;
+              font-weight: 600;
+              line-height: 24px;
+              text-align: left;
+              color: #091e42;
+            "
+            >Project: {{ item.projectName }}</span
+          >
+          <span style="color: #848ea0; font-size: 0.7rem" class="pt-2">{{
+            item.projectDescription
+          }}</span>
+        </div>
+      </div>
+
+      <div class="p-3 d-flex flex-column" style="height: 60%">
+        <div class="d-flex flex-column">
+          <span style="font-size: 0.8rem; color: #091e42; font-weight: 600"
+            >Budget</span
+          >
+          <span style="font-size: 0.8rem; color: #465671; font-weight: 400">{{
+            item.budget
+          }}</span>
+        </div>
+        <div class="d-flex flex-column">
+          <span style="font-size: 0.8rem; color: #091e42; font-weight: 600"
+            >Total No. of Positions</span
+          >
+          <span style="font-size: 0.8rem; color: #465671; font-weight: 400">{{
+            item.totalNoOfPosition
+          }}</span>
+        </div>
+        <div class="d-flex flex-column">
+          <span style="font-size: 0.8rem; color: #091e42; font-weight: 600"
+            >Co-planner</span
+          >
+          <span style="font-size: 0.8rem; color: #465671; font-weight: 400">{{
+            item.coplaner
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #PopUpComponent let-modal>
+  <div class="modal-header d-flex flex-row justify-content-between p-2">
+    <h4 class="modal-title">Create Project</h4>
+
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="box">
+      <span class="input-title"
+        >Project Name<span style="color: red"> *</span>
+      </span>
+      <input class="input mt-2" [(ngModel)]="projName" type="text" />
+      <span *ngIf="projName === ''" class="input-title-red"
+        >Project Name is required</span
+      >
+    </div>
+    <div class="mt-1 box">
+      <span class="input-title"
+        >Project description<span style="color: red"> *</span></span
+      >
+      <input class="input mt-2" [(ngModel)]="projDes" type="text" />
+      <span *ngIf="projDes === ''" class="input-title-red"
+        >Project Description is required</span
+      >
+    </div>
+    <div class="mt-1 box">
+      <span class="input-title">Co-planner</span>
+      <input class="input mt-2" [(ngModel)]="coplanner" type="text" />
+    </div>
+  </div>
+
+  <div class="modal-footer d-flex flex-row justify-content-end p-2">
+    <button
+      type="button"
+      class="create"
+      aria-label="Close"
+      (click)="createProject()"
+    >
+      <span style="text-align: center" aria-hidden="true">Create</span>
+    </button>
+  </div>
+</ng-template>

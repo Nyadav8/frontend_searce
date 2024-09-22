@@ -1,0 +1,62 @@
+<div style="width: 100vw; height: 100vh">
+  <div
+    style="width: 60%; height: 50%; background-color: white; border-radius: 6px"
+    class="p-2 centered-text"
+  >
+    <div>
+      <div class="d-flex flex-row justify-content-center">
+        <img
+          style="width: 4rem"
+          src="../../../assets/icons/Happierwork Social Image (circle) 1.svg"
+          alt=""
+        />
+        <img
+          style="height: 3rem"
+          src="../../../assets/icons/hw-logo 1.svg"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center">
+      <span style="font-size: 1.5rem; font-weight: 600">Login</span>
+    </div>
+    <div style="width: 100%" class="d-flex flex-row justify-content-center">
+      <div style="width: 70%">
+        <div style="width: 100%">
+          <label class="input-title" for="">Email ID</label>
+          <input
+            class="input"
+            [(ngModel)]="email"
+            placeholder="Enter your email"
+            type="text"
+          />
+        </div>
+        <div style="width: 100%">
+          <label class="input-title" for="">Password</label>
+          <input
+            class="input"
+            [(ngModel)]="password"
+            placeholder="Enter your password"
+            type="password"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center p-3">
+      <div
+        class="p-1 d-flex flex-row justify-content-center"
+        style="
+          width: 5rem;
+          border-radius: 6px;
+          background-color: rgb(255, 177, 31);
+          align-items: center;
+          color: white;
+          font-weight: 600;
+        "
+        (click)="onLogin()"
+      >
+        <span style="text-align: center">Login</span>
+      </div>
+    </div>
+  </div>
+</div>

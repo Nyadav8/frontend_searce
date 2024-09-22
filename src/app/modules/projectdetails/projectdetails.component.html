@@ -1,0 +1,331 @@
+<div style="height: 100%; width: 100%">
+  <div class="d-flex flex-row justify-content-between p-2">
+    <div class="d-flex flex-row">
+      <span (click)="handleBack()"
+        ><img src="../../../assets/icons/Button.svg" alt=""
+      /></span>
+      <span class="ps-2" style="font-size: 1.2rem; font-weight: 600">{{
+        this.projName
+      }}</span>
+    </div>
+    <button class="create2" (click)="openPopUp(PopUpComponent)">Click +</button>
+  </div>
+  <!-- <div class="d-flex flex-row p-2">
+    <img
+      style="z-index: 1; position: relative; margin-right: -20px"
+      src="../../../assets/icons/Icon.svg"
+      alt=""
+    />
+    <input
+      class="search"
+      style="padding-left: 25px"
+      type="text"
+      placeholder="search by name"
+    />
+    <ng-multiselect-dropdown
+      class="ms-1"
+      style="background-color: #fafbfc; width: 300px"
+      [placeholder]="'Choose Designation'"
+      [(ngModel)]="selectedDesignation"
+      [settings]="this.dropdownSettings"
+      [data]="this.dropdownListbuyerType"
+      (onSelect)="onDesignationChange($event)"
+      (onDeSelect)="onDesignationDeChange($event)"
+    >
+    </ng-multiselect-dropdown>
+  </div> -->
+  <div
+    style="height: 70%; width: 100%"
+    class="d-flex flex-wrap justify-content-between"
+  >
+    <div
+      style="width: 70%; background-color: white; border-radius: 6px"
+      class="p-2"
+    >
+      <div class="d-flex flex-row justify-content-center mt-2 test">
+        <div
+          style="
+            width: 100%;
+            background-color: black;
+            color: white;
+            font-weight: 700;
+            border-radius: 4px;
+          "
+          class="d-flex flex-column test2"
+        >
+          <div class="d-flex flex-row test2">
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="width: 25%; align-items: center"
+            >
+              <span class="d-flex flex-row justify-content-center p-1"
+                >Designation</span
+              >
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="width: 25%; align-items: center"
+            >
+              <span class="d-flex flex-row justify-content-center p-1"
+                >Department</span
+              >
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="width: 25%; align-items: center"
+            >
+              <span class="d-flex flex-row justify-content-center p-1"
+                >Budget</span
+              >
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="width: 25%; align-items: center"
+            >
+              <span class="d-flex flex-row justify-content-center p-1">
+                Location
+              </span>
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="width: 25%; align-items: center"
+            >
+              <span class="d-flex flex-row justify-content-center p-1">
+                Last Updated
+              </span>
+            </div>
+          </div>
+          <div
+            *ngFor="let data of this.tableData; let i = index"
+            style="background-color: white; color: black"
+            class="d-flex flex-row"
+          >
+            <div
+              class="d-flex flex-row justify-content-center p-1"
+              style="
+                width: 25%;
+                align-items: center;
+                border: 1px solid black;
+                overflow-x: auto;
+              "
+            >
+              <span class="d-flex flex-row justify-content-center">{{
+                data.designation
+              }}</span>
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center p-1"
+              style="
+                width: 25%;
+                align-items: center;
+                border: 1px solid black;
+                overflow-x: auto;
+              "
+            >
+              <span class="d-flex flex-row justify-content-center">{{
+                data.department
+              }}</span>
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center p-1"
+              style="
+                width: 25%;
+                align-items: center;
+                border: 1px solid black;
+                overflow-x: auto;
+              "
+            >
+              <span class="d-flex flex-row justify-content-center">{{
+                data.budget
+              }}</span>
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center p-1"
+              style="
+                width: 25%;
+                align-items: center;
+                border: 1px solid black;
+                overflow-x: auto;
+              "
+            >
+              <span class="d-flex flex-row justify-content-center">{{
+                data.location
+              }}</span>
+            </div>
+            <div
+              class="d-flex flex-row justify-content-center p-1"
+              style="
+                width: 25%;
+                align-items: center;
+                border: 1px solid black;
+                overflow-x: auto;
+              "
+            >
+              <span class="d-flex flex-row justify-content-center">{{
+                data.name
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="p-2"
+      style="
+        width: 25%;
+        background-color: white;
+        border-radius: 6px;
+        overflow: auto;
+        height: 100%;
+      "
+    >
+      <div>
+        <span class="title"
+          >Budget
+          <span
+            (click)="openEditBudget()"
+            style="
+              font-size: 1rem;
+              font-style: italic;
+              text-decoration: underline;
+              color: rgb(255, 217, 0);
+              font-weight: 600;
+            "
+            >Edit</span
+          ></span
+        >
+      </div>
+      <div *ngIf="editBudget == true" class="d-flex flex-column">
+        <span style="font-weight: 600; font-size: 1rem">Budget</span>
+        <input
+          class="search2"
+          [(ngModel)]="totalBudget2"
+          placeholder="Enter Budget"
+          type="number"
+        />
+        <button
+          class="mt-1"
+          style="
+            width: 80%;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #f5b609;
+          "
+          (click)="updateBudget2()"
+        >
+          Update
+        </button>
+      </div>
+      <div class="d-flex flex-row justify-content-center" style="width: 100%">
+        <div class="d-flex flex-row justify-content-center" style="width: 80%">
+          <canvas id="myDonutChart"></canvas>
+        </div>
+      </div>
+      <div
+        class="d-flex flex-column p-1"
+        *ngFor="let item of colors; let i = index"
+      >
+        <div class="d-flex flex-row justify-content-between p-1">
+          <div
+            style="width: 1rem; height: 1rem"
+            [ngStyle]="{ 'background-color': item }"
+          ></div>
+          <div>{{ arr[i] }}</div>
+        </div>
+      </div>
+      <div
+        style="border-top: 2px solid rgb(155, 155, 155)"
+        class="d-flex flex-column p-2"
+      >
+        <div class="d-flex flex-row justify-content-between">
+          <div style="font-weight: 600">Total Budget :</div>
+          <div>{{ totalBudget }}</div>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+          <div style="font-weight: 600">Used :</div>
+          <div>{{ totalUsed }}</div>
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+          <div style="font-weight: 600">Left :</div>
+          <div>{{ totalBudget - totalUsed }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2" style="width: 100%">
+    <app-pagination
+      [totalRecords]="totalRecords"
+      [paginatioData]="paginatioData"
+      (onChange)="onPaginationChange($event)"
+    >
+    </app-pagination>
+  </div>
+</div>
+
+<ng-template #PopUpComponent let-modal>
+  <div class="modal-header d-flex flex-row justify-content-between p-2">
+    <h4 class="modal-title">Create Project</h4>
+
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="box">
+      <span class="input-title"
+        >Designation<span style="color: red"> *</span>
+        <ng-multiselect-dropdown
+          class="ms-1"
+          style="background-color: #fafbfc; width: 300px"
+          [placeholder]="'Choose Designation'"
+          [(ngModel)]="department"
+          [settings]="this.dropdownSettings"
+          [data]="this.dropdownListbuyerType"
+          (onSelect)="onDesignationChange($event)"
+          (onDeSelect)="onDesignationDeChange($event)"
+        >
+        </ng-multiselect-dropdown>
+      </span>
+    </div>
+    <div class="mt-1 box">
+      <span class="input-title"
+        >Designation<span style="color: red"> *</span></span
+      >
+      <input class="input mt-2" [(ngModel)]="designation" type="text" />
+      <span *ngIf="department === ''" class="input-title-red"
+        >Designation is required</span
+      >
+    </div>
+    <div class="mt-1 box">
+      <span class="input-title">Budget<span style="color: red"> *</span></span>
+      <input class="input mt-2" [(ngModel)]="budget" type="text" />
+      <span *ngIf="budget === ''" class="input-title-red"
+        >Budget is required</span
+      >
+    </div>
+    <div class="mt-1 box">
+      <span class="input-title">Location</span>
+      <input class="input mt-2" [(ngModel)]="location" type="text" />
+      <span *ngIf="location === ''" class="input-title-red"
+        >location is required</span
+      >
+    </div>
+  </div>
+
+  <div class="modal-footer d-flex flex-row justify-content-end p-2">
+    <button type="button" class="create" aria-label="Close">
+      <span
+        style="text-align: center"
+        aria-hidden="true"
+        (click)="createWorkforce()"
+        >Create</span
+      >
+    </button>
+  </div>
+</ng-template>

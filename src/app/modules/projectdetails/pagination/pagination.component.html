@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-sm-8 col-md-8 col-lg-8">
+    <div style="margin-top: 5px; margin-bottom: 5px">
+      <span class="col-xs-6" style="margin-right: 1px">
+        <b>Total Count:</b>&nbsp;<strong>{{ totalRecords }}</strong>
+        &nbsp;
+      </span>
+      <span class="col-xs-6" *ngIf="isPageSizeAllow">
+        <span> &nbsp;&nbsp; Show rows :&nbsp; </span>
+        <select
+          class="form-control-sm"
+          [(ngModel)]="pageSize"
+          (change)="onPageSizeChange()"
+        >
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+          <option>100</option>
+        </select>
+      </span>
+    </div>
+  </div>
+  <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top: 3px">
+    <div class="float-right">
+      <ul class="pagination">
+        <li>
+          <button
+            class="btn btn-default btn-sm"
+            type="button"
+            (click)="onFirstClick()"
+            [disabled]="currentPageNumber == 1 || currentPageNumber == 0"
+          >
+            {{ firstBtnName }}
+          </button>
+        </li>
+        <li>
+          <button
+            class="btn btn-default btn-sm"
+            type="button"
+            (click)="onPreClick()"
+            [disabled]="currentPageNumber == 1 || currentPageNumber == 0"
+          >
+            {{ preBtnName }}
+          </button>
+        </li>
+        <li>
+          <input
+            type="number"
+            class="form-control-sm col-3"
+            [(ngModel)]="jumpToPage"
+            (keyup.enter)="onJumpToPageClick()"
+            [disabled]="totalRecords <= pageSize"
+            style="display: -ms-inline-grid"
+          />of {{ totalPage }}
+          <button
+            class="btn btn-default btn-sm"
+            type="button"
+            (click)="onNextClick()"
+            [disabled]="currentPageNumber == totalPage"
+          >
+            {{ nextBtnName }}
+          </button>
+          <button
+            class="btn btn-default btn-sm"
+            type="button"
+            (click)="onLastClick()"
+            [disabled]="currentPageNumber == totalPage"
+          >
+            {{ lastBtnName }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
