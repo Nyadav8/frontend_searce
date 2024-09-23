@@ -70,7 +70,10 @@ export class ProjectComponent implements OnInit {
       this.toaster.error('Project Description is required');
       return;
     }
-
+    if (this.coplanner === '') {
+      this.toaster.error('co-planner is required');
+      return;
+    }
     this.service
       .createProject({
         projectName: this.projName,
